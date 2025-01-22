@@ -1,5 +1,5 @@
 # Visualizing the Loss Landscape of Neural Networks
-> <b>Application showcasing landscapeviz [here](http://arturdeluca.pythonanywhere.com/)</b>
+Updated to work with newer versions of tensorflow and keras
 
 <p align="center">
   <img width="350" height="350" src="/docs/img/countour.svg">
