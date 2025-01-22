@@ -9,7 +9,15 @@ from sklearn.decomposition import PCA
 
 from .trajectory import load_weights, weight_encoder
 
-
+def _ensure_list(value):
+    """
+    Ensures model.evaluate return values are always in a list form
+    (fixes the TypeError: 'float' object is not subscriptable).
+    """
+    if isinstance(value, (list, tuple)):
+        return value
+    return [value]
+    
 def get_vectors(model, seed=None, trajectory=None):
     """
     Updated get_vectors function to handle new TF/Keras requirements.
@@ -72,7 +80,8 @@ def _obj_fn(model, data, solution):
     model.set_weights(solution)
     value = model.evaluate(data[0], data[1], verbose=0)
     model.set_weights(old_weights)
-    return value
+    # Ensure it's always a list
+    return _ensure_list(value)
 
 
 def build_mesh(
